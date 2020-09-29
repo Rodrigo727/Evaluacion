@@ -3,12 +3,16 @@ package com.rodrigo.evaluacion;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.telephony.mbms.StreamingServiceInfo;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.RatingBar;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -18,7 +22,9 @@ public class Generar_Registro extends AppCompatActivity {
     Button btnAceptar;
     EditText txtMarca , txtModelo;
     RatingBar ratingbar;
-    RadioGroup rbGrupo;
+    CheckBox checkBox;
+    private String RbSelect;
+    static ArrayList<Auto> listaAuto = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,7 +34,7 @@ public class Generar_Registro extends AppCompatActivity {
         txtMarca = findViewById(R.id.txtMarca);
         txtModelo = findViewById(R.id.txtModelo);
         ratingbar = findViewById(R.id.ratingBar);
-        rbGrupo = findViewById(R.id.rbGrupo);
+        checkBox = findViewById(R.id.checkBox);
 
         ArrayList<String> tipo = new ArrayList<>();
         tipo.add("Sedan");
@@ -37,19 +43,19 @@ public class Generar_Registro extends AppCompatActivity {
         tipo.add("Todo Terreno");
         ArrayAdapter<String> adaptador = new ArrayAdapter<>(Generar_Registro.this,
                 android.R.layout.simple_spinner_item,tipo);
-
         spTipo.setAdapter(adaptador);
-
-
-        rbGrupo.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+        btnAceptar.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                if (i == R.id.rbSi){
-                    ratingbar.setEnabled(true);
-                }else{
-                    ratingbar.setRating(0);
-                    ratingbar.setEnabled(false);
-                }
+            public void onClick(View view) {
+                Toast.makeText(Generar_Registro.this,"Registrar",Toast.LENGTH_SHORT).show();
+                String Marca = txtMarca.getText().toString();
+                String Modelo = txtModelo.getText().toString();
+                String Tipo = spTipo.getSelectedItem().toString();
+                String Valoracion = Float.toString(ratingbar.getRating());
+                String AC = Boolean.toString(checkBox.isChecked());
+
+                Auto auto = new Auto(Marca,Modelo,Tipo,Valoracion,AC);
+                listaAuto.add(auto);
             }
         });
     }
