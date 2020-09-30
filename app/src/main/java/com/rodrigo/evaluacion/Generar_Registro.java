@@ -4,6 +4,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.telephony.mbms.StreamingServiceInfo;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -23,7 +25,8 @@ public class Generar_Registro extends AppCompatActivity {
     EditText txtMarca , txtModelo;
     RatingBar ratingbar;
     CheckBox checkBox;
-    private String RbSelect;
+    private boolean MarcaOk = false;
+    private boolean ModeloOK = false;
     static ArrayList<Auto> listaAuto = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,5 +66,50 @@ public class Generar_Registro extends AppCompatActivity {
                 listaAuto.add(auto);
             }
         });
+
+        txtMarca.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() < 2){
+                    txtMarca.setError("Marca Muy Corta");
+                    MarcaOk = false;
+                }else {
+                    MarcaOk = true;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
+        txtModelo.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (charSequence.length() < 2){
+                    txtModelo.setError("Modelo Muy Corto");
+                    ModeloOK = false;
+                }else {
+                    ModeloOK = true;
+                }
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
+
     }
 }
