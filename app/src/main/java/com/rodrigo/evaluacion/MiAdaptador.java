@@ -32,8 +32,8 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.ViewHolderDato
     public void onBindViewHolder(@NonNull ViewHolderDatos holder, int position) {
         holder.txtMarca.setText(listaAuto.get(position).getMarca());
         holder.txtModelo.setText(listaAuto.get(position).getModelo());
-        holder.txtAC.setText(listaAuto.get(position).getAC());
         holder.txtTipo.setText(listaAuto.get(position).getTipo());
+        holder.txtAC.setText(listaAuto.get(position).getAC());
         holder.txtEstrella.setText(listaAuto.get(position).getValoracion());
 
     }
@@ -45,14 +45,15 @@ public class MiAdaptador extends RecyclerView.Adapter<MiAdaptador.ViewHolderDato
 
 
     public class ViewHolderDatos extends RecyclerView.ViewHolder {
-        TextView txtModelo, txtMarca, txtAC, txtTipo, txtEstrella;
+        TextView  txtMarca,txtModelo, txtTipo, txtAC, txtEstrella;
         public ViewHolderDatos(@NonNull View itemView) {
             super(itemView);
-            txtAC = itemView.findViewById(R.id.txtAC);
-            txtEstrella = itemView.findViewById(R.id.txtEstrella);
             txtMarca = itemView.findViewById(R.id.txtMarca);
             txtModelo = itemView.findViewById(R.id.txtModelo);
             txtTipo = itemView.findViewById(R.id.txtTipo);
+            txtAC = itemView.findViewById(R.id.txtAC);
+            txtEstrella = itemView.findViewById(R.id.txtEstrella);
+
         }
 
     }

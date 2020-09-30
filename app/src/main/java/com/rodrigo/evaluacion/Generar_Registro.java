@@ -53,6 +53,11 @@ public class Generar_Registro extends AppCompatActivity {
                 String Tipo = spTipo.getSelectedItem().toString();
                 String Valoracion = Float.toString(ratingbar.getRating());
                 String AC = Boolean.toString(checkBox.isChecked());
+                if(AC.equals("true")){
+                    AC = "Con aire Acondicionado";
+                }else if(AC.equals("false")){
+                    AC = "Sin Aire Acondicionado";
+                }
 
                 Auto auto = new Auto(Marca,Modelo,Tipo,Valoracion,AC);
                 listaAuto.add(auto);
